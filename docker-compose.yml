@@ -62,6 +62,7 @@ services:
       - "8080:8080"   # UI web du master
     volumes:
       - ./spark-app:/opt/spark-app
+      - ./Architecture_Medaillon:/opt/Architecture_Medaillon
     depends_on:
       - minio
     networks:
