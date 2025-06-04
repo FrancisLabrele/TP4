@@ -61,7 +61,6 @@ services:
       - "7077:7077"   # protocole Spark RPC (master)
       - "8080:8080"   # UI web du master
     volumes:
-      - ./spark-app:/opt/bitnami/spark/spark-app
       - ./Architecture_Medaillon:/opt/bitnami/spark/Architecture_Medaillon
     depends_on:
       - minio
