@@ -1,0 +1,17 @@
+FROM bitnami/spark:latest
+ 
+# Passe temporairement en root pour créer un utilisateur
+USER root
+ 
+# Crée un utilisateur explicite avec un dossier HOME
+RUN useradd -ms /bin/bash sparkuser
+ 
+# Donne les droits à sparkuser sur Spark et son home (important pour éviter d’autres erreurs)
+RUN chown -R sparkuser:sparkuser /opt/bitnami /home/sparkuser
+ 
+# Reviens à un utilisateur non-root
+USER sparkuser
+ 
+# Définit les variables d'environnement
+ENV HOME=/home/sparkuser
+WORKDIR /home/sparkuser

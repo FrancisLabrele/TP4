@@ -6,7 +6,7 @@ from pyspark.sql.types import StringType
 spark = SparkSession.builder.appName("CleanEtablissements").getOrCreate()
  
 # Charger les données
-df = spark.read.option("header", "true").csv("bronze/simulated_etablissements_50000.csv")
+df = spark.read.option("header", "true").csv("./bronze/Etablissement_information.csv")
  
 # Calcul du seuil de colonnes à conserver (>10% de données non nulles)
 row_count = df.count()
@@ -30,4 +30,4 @@ for column in df_cleaned.columns:
 df_cleaned = df_cleaned.filter(col("etatAdministratifEtablissement") == "A")
  
 # Sauvegarder dans silver
-df_cleaned.write.mode("overwrite").option("header", "true").csv("silver/simulated_etablissements_50000.csv")
+df_cleaned.write.mode("overwrite").option("header", "true").csv("./silver/Etablissement_information_cleaned.csv")

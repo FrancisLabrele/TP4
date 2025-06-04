@@ -55,6 +55,9 @@ services:
   spark-master:
     image: bitnami/spark:latest
     container_name: spark-master
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - SPARK_MODE=master
     ports:
@@ -73,6 +76,9 @@ services:
   spark-worker-1:
     image: bitnami/spark:latest
     container_name: spark-worker-1
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
@@ -87,6 +93,9 @@ services:
   spark-worker-2:
     image: bitnami/spark:latest
     container_name: spark-worker-2
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
